@@ -1,7 +1,8 @@
 #!/bin/bash
 
 COMMAND=$1
-BASE=/home/o3de/github/RobotVacuumSample
+
+BASE=$(cd `dirname $0` && pwd)
 
 if [ "$COMMAND" = "" ]
 then
@@ -63,6 +64,9 @@ then
     exit $?
 elif [ "$COMMAND" = "build" ]
 then
+
+    echo Building the Robot Vacuum Demo and assets
+
     cd $BASE
     
     cmake -B $BASE/build/linux -G "Ninja Multi-Config" -S $BASE -DLY_DISABLE_TEST_MODULES=ON -DLY_STRIP_DEBUG_SYMBOLS=ON -DAZ_USE_PHYSX5=ON
